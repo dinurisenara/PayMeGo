@@ -9,8 +9,8 @@ Image logoWidget(String path) {
   return Image.asset(path,fit: BoxFit.fitWidth, width: 80, height: 80);
 }
 // Logo text widget
-Text logoTextWidget(String text) {
-  return Text(text, style: const TextStyle(color: Colors.white, 
+Text logoTextWidget(String text , context) {
+  return Text(text, style:  TextStyle(color: Theme.of(context).colorScheme.primary, 
   fontSize: 46, fontWeight: FontWeight.bold));
 }
 // Reusable text field
@@ -23,11 +23,11 @@ TextField reusableTextFeild( String text , IconData icon ,
   obscureText: isPasswordType,
   enableSuggestions: !isPasswordType,
   autocorrect: !isPasswordType,
-  cursorColor: Colors.white,
-  style:  TextStyle(color: Colors.white.withOpacity(0.9)),
+  cursorColor: Theme.of(context).colorScheme.primary,
+  style:  TextStyle(color: Theme.of(context).colorScheme.primary.withOpacity(0.9)),
   decoration: InputDecoration(prefixIcon:  Icon( icon, color: Colors.white70, ),
   labelText: text,
-  labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
+  labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary.withOpacity(0.9)),
   filled: true,
   floatingLabelBehavior: FloatingLabelBehavior.never,
   fillColor:Theme.of(context).colorScheme.primary.withOpacity(0.3),
@@ -45,9 +45,6 @@ TextField reusableTextFeild( String text , IconData icon ,
 
 // Reusable button
 
-
-
-
 Container nextButton(BuildContext context, Function onTap , String buttonText) {
   return Container(
     width: MediaQuery.of(context).size.width,
@@ -63,9 +60,9 @@ Container nextButton(BuildContext context, Function onTap , String buttonText) {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
-            return Colors.black26;
+            return Theme.of(context).colorScheme.secondary.withOpacity(0.5);
           } else {
-            return Colors.white.withOpacity(0.9);
+            return Theme.of(context).colorScheme.primary.withOpacity(0.9);
           }
         }),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -76,8 +73,8 @@ Container nextButton(BuildContext context, Function onTap , String buttonText) {
       ),
       child:  Text(
         buttonText,
-        style: const TextStyle(
-          color: Colors.black87,
+        style:  TextStyle(
+          color: Theme.of(context).colorScheme.secondary,
           fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
@@ -85,6 +82,35 @@ Container nextButton(BuildContext context, Function onTap , String buttonText) {
     ),
   );
 }
+
+Drawer drawerWidget(BuildContext context) {
+  return Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        const DrawerHeader(
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          ),
+          child: Text('Drawer Header'),
+        ),
+        ListTile(
+          title: const Text('Item 1'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: const Text('Item 2'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    ),
+  );
+}
+
 
 
 

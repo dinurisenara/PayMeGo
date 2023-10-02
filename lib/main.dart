@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paymego/screens/login.dart';
 import 'package:paymego/themes/darkTheme.dart';
+import 'package:paymego/themes/lightTheme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'PayMeGo',
-      theme: ThemeData(
-        brightness: Brightness.light,
-      ),
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
+     theme: lightTheme,
+    darkTheme: darkTheme,
+    themeMode: ThemeMode.system,
+      
       home: const Login(),
     );
   }

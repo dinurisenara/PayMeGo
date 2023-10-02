@@ -22,19 +22,19 @@ class SignupScreenState extends State<SignupScreen> {
     TextEditingController phonecontroller = TextEditingController();
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
+        title:  Text(
           'Signup',
           style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme:  IconThemeData(color: Theme.of(context).colorScheme.primary),
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         
@@ -73,8 +73,9 @@ class SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(                
                 filled: true,
                 floatingLabelBehavior: FloatingLabelBehavior.never,
-                fillColor: Colors.white.withOpacity(0.3),
+                fillColor: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 labelText: 'Phone Number',
+                labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary.withOpacity(0.9)),
                 border:  OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30.0),
                   borderSide: const BorderSide(width: 0, style: BorderStyle.none),

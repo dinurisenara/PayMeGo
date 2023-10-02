@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
     TextEditingController passwordTextController = TextEditingController();
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Container(        
+      body: SizedBox(        
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         
@@ -34,7 +34,7 @@ class _LoginState extends State<Login> {
                 ),
                 
                 
-                logoTextWidget('Login'),
+                logoTextWidget('Login',context),
                 const SizedBox(
                   height: 60,
                 ),
@@ -70,15 +70,15 @@ class _LoginState extends State<Login> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Don\'t have an account?',
-        style: TextStyle(color: Colors.white),),
+         Text('Don\'t have an account?',
+        style: TextStyle(color: Theme.of(context).colorScheme.primary)),
         GestureDetector(
           onTap: (){
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const SignupScreen()));
           },
-          child: const Text('Sign Up',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+          child:  Text('Sign Up',
+          style: TextStyle(color:Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold),),
         ),
       ],
     );
