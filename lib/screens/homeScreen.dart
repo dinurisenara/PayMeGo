@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:paymego/resuable_widgets/reusable_widgets.dart';
+import 'package:paymego/screens/Btransfers.dart';
 import 'package:paymego/screens/CTrans.dart';
+import 'package:paymego/screens/QRpay.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,11 +11,20 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => HomeScreenState();
 }
 
+
+
+IconData iconlight = Icons.wb_sunny;  
+IconData icondark = Icons.nights_stay;
+
+
+
 class HomeScreenState extends State<HomeScreen> {
+  bool isdark = false;
+  bool get isDark { return isdark;}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: drawerWidget(context),
+      drawer: drawerWidget(context ),
       backgroundColor: Theme.of(context).colorScheme.background,
       extendBodyBehindAppBar: false,
       appBar: AppBar(
@@ -36,7 +47,7 @@ class HomeScreenState extends State<HomeScreen> {
           IconButton(
             onPressed: () {},
             icon: const Icon(
-              Icons.person_2_outlined,
+              Icons.account_circle,
             ),
             padding: const EdgeInsets.only(right: 20),
           ),
@@ -46,13 +57,30 @@ class HomeScreenState extends State<HomeScreen> {
       body: GridView.count(
         crossAxisCount: 2,
         children: [
-          gridItem(context, 'Send Money', Icons.send, () {Navigator.push(context,
+          gridItem(context, 'Card Payment', Icons.send, () {Navigator.push(context,
           MaterialPageRoute(builder: (context) => const CardPayments()), );}),
-          gridItem(context, 'Request Money', Icons.request_page, () {}),
+          gridItem(context, 'Bank Transfer', Icons.money, () {Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const Btransfer()), );}),
           gridItem(context, 'Transactions', Icons.money, () {}),
-          gridItem(context, 'My Account', Icons.account_circle, () {}),
+          gridItem(context, 'QR Pay', Icons.qr_code, () {Navigator.push(context,
+          MaterialPageRoute(builder: (context) => QRpay()), );}),
         ],
-      )
+      ),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            isdark = !isdark;
+          });
+        },
+        backgroundColor: Theme.of(context).colorScheme.primary,
+       
+        child: Icon(
+          isdark ? icondark : iconlight,
+          color: Theme.of(context).colorScheme.secondary,
+        )
+      ),
+      
        
     );
   }
@@ -60,3 +88,6 @@ class HomeScreenState extends State<HomeScreen> {
   
   
 }
+
+
+

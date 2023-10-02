@@ -52,13 +52,13 @@ class _OtpState extends State<Otp> {
               numberOfFields: 5,
               borderColor: const Color(0xFF512DA8),
               
-              //set to true to show as box or false to show as dash
+             
               showFieldAsBox: true,
-              //runs when a code is typed in
+              
               onCodeChanged: (String code) {
-                //handle validation or checks here
+               
               },
-              //runs when every textfield is filled
+              
               onSubmit: (String verificationCode) {
                 showDialog(
                     context: context,
@@ -68,7 +68,7 @@ class _OtpState extends State<Otp> {
                         content: Text('Code entered is $verificationCode'),
                       );
                     });
-              }, // end onSubmit
+              }, 
             ),
             
             const SizedBox(
@@ -76,11 +76,9 @@ class _OtpState extends State<Otp> {
             ),
             ElevatedButton(
               onPressed: () {
-                // Verify the OTP entered by the user
-                // You can add your OTP verification logic here
-                // For a UI example, you can check if the entered OTP matches a predefined value
+                
                 String enteredOTP = otpController.text;
-                String predefinedOTP = '123456'; // Replace with your OTP
+                String predefinedOTP = '123456'; 
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Login()),
@@ -88,7 +86,7 @@ class _OtpState extends State<Otp> {
                 if (enteredOTP == predefinedOTP) {
                   
                 } else {
-                  // OTP is invalid, show an error message
+                  
                   print('Invalid OTP');
                 }
               },

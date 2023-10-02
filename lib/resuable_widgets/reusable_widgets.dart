@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:paymego/screens/homeScreen.dart';
+import 'package:paymego/screens/login.dart';
 
 // Logo widget
 Image logoWidget(String path) {
@@ -104,34 +106,65 @@ Drawer drawerWidget(BuildContext context) {
             backgroundColor: Theme.of(context).colorScheme.secondary,
           ),
         ),
-        menueItem(context,  'Transactions'),
-        menueItem(context,  'Transactions'),
-        menueItem(context,  'Transactions'),
-        menueItem(context,  'Transactions'),
-        menueItem(context,  'Transactions'),
-        menueItem(context,  'Transactions'),
+        menueItem(context, 'Transaction History', () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()));
+        }),
+        menueItem(context, 'Add Payment Method', () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()));
+        }),
+        menueItem(context, 'Account Information', () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()));
+        }),
+        
+        menueItem(context, 'Logout', () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const Login()));
+        }),
       ],
     ),
   );
 }
 
-ListTile menueItem(BuildContext context,  String text) {
+ListTile menueItem(BuildContext context, String text, Function f ) {
   return ListTile(
-   
     
-    title: Text(
-      text,
-      style: TextStyle(
-        color: Theme.of(context).colorScheme.secondary,
-        fontSize: 20,
+    title: ElevatedButton(
+     
+      
+      style: ButtonStyle(
+        alignment: Alignment.centerLeft,
+        backgroundColor: MaterialStateProperty.resolveWith((states) {
+          if (states.contains(MaterialState.pressed)) {
+            return Theme.of(context).colorScheme.secondary.withOpacity(0.5);
+          } else {
+            return Theme.of(context).colorScheme.primary.withOpacity(0.9);
+          }
+        }),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(3),
+          ),
+        ),
+      ),  
+      onPressed: () => f(),
+      child: Text(
+        text,
+        
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.secondary,
+          fontSize: 20,
+          
+          
+        ),
+        
       ),
+      
     ),
-    minVerticalPadding: 30,
-    contentPadding: const EdgeInsets.fromLTRB(50, 0, 20, 0),
-   
-    onTap: () {
-      Navigator.pop(context);
-    },
+    minVerticalPadding: 20,
+    contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
   );
 }
 
@@ -140,6 +173,7 @@ AppBar cmnappbar(BuildContext context) {
     backgroundColor: Colors.transparent,
     elevation: 0,
     title: logoWidget('assets/images/logo.png'),
+    toolbarHeight: 100,
     actions: [
       IconButton(
         onPressed: () {},
@@ -147,47 +181,54 @@ AppBar cmnappbar(BuildContext context) {
           Icons.person_2_outlined,
         ),
         padding: const EdgeInsets.only(right: 20),
-      ),],
+      ),
+    ],
     centerTitle: true,
     iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
   );
 }
 
+gridItem(
+    BuildContext context, String s, IconData requestPage, Function function) {
+  return InkWell(
+    onTap: () {
+      function();
+      // Navigator.push(context,
+      //     MaterialPageRoute(builder: (context) => const HomeScreen()), );
+    },
+    child: Card(
+      
 
-
-gridItem(BuildContext context, String s, IconData requestPage, Function function) {
-    return InkWell(
-      onTap: () {
-        function();
-        // Navigator.push(context,
-        //     MaterialPageRoute(builder: (context) => const HomeScreen()), );
-      },
-      child: Card(
-       // move the entire stack of grid cards  a little lower 
-
-        margin: const EdgeInsets.all(25),
-        color: Theme.of(context).colorScheme.primary,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                requestPage,
-                size: 50,
+      margin: const EdgeInsets.all(25),
+      color: Theme.of(context).colorScheme.primary,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              requestPage,
+              size: 50,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            Text(
+              s,
+              style: TextStyle(
                 color: Theme.of(context).colorScheme.secondary,
+                fontSize: 20,
               ),
-              Text(
-                s,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontSize: 20,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
-
+TextField paymentTextfeild(String text) {
+  return TextField(
+    decoration: InputDecoration(
+      border: const UnderlineInputBorder(),
+      labelText: text,
+    ),
+  );
+}
