@@ -7,6 +7,7 @@ ThemeData darkTheme = ThemeData(
    background:  Color.fromRGBO(1, 30, 54, 100),
    primary: Colors.white,
     secondary: Color.fromRGBO(0, 0, 0, 1),
+    onSecondary : Color.fromRGBO(43, 97, 97, 1),  
   
   ),
 );

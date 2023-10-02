@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paymego/resuable_widgets/reusable_widgets.dart';
+import 'package:paymego/screens/CTrans.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,7 +13,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: drawerWidget( context),
+      drawer: drawerWidget(context),
       backgroundColor: Theme.of(context).colorScheme.background,
       extendBodyBehindAppBar: false,
       appBar: AppBar(
@@ -31,7 +32,6 @@ class HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         title: logoWidget('assets/images/logo.png'),
         centerTitle: true,
-        
         actions: [
           IconButton(
             onPressed: () {},
@@ -43,6 +43,20 @@ class HomeScreenState extends State<HomeScreen> {
         ],
         iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
       ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: [
+          gridItem(context, 'Send Money', Icons.send, () {Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const CardPayments()), );}),
+          gridItem(context, 'Request Money', Icons.request_page, () {}),
+          gridItem(context, 'Transactions', Icons.money, () {}),
+          gridItem(context, 'My Account', Icons.account_circle, () {}),
+        ],
+      )
+       
     );
   }
+  
+  
+  
 }

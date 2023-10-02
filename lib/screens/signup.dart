@@ -39,7 +39,7 @@ class SignupScreenState extends State<SignupScreen> {
         height: MediaQuery.of(context).size.height,
         
         child: SingleChildScrollView(
-            child: Padding(
+            child: Container(
           padding: EdgeInsets.fromLTRB(
               20, MediaQuery.of(context).size.height * 0.2, 20, 0),
           child: Column(children: [
